@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: smart-grid-validator-web
+    runtime: static
+    buildCommand: bash scripts/render-build.sh
+    staticPublishPath: build/web
+    envVars:
+      - key: FLUTTER_VERSION
+        value: 3.38.3
+      - key: API_BASE_URL
+        value: https://TU-BACKEND.onrender.com/api/v1
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

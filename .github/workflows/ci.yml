@@ -1,0 +1,51 @@
+name: Flutter Multiplatform CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  analyze-test-web-android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.38.3"
+          channel: stable
+          cache: true
+      - name: Preparar proyecto Android conservando Web
+        run: flutter create . --project-name smart_grid_validator --org mx.edu.upchiapas --platforms android
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test --reporter expanded
+      - run: flutter build web --release --dart-define=API_BASE_URL=https://example.invalid/api/v1
+      - run: flutter build apk --release --dart-define=API_BASE_URL=https://example.invalid/api/v1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: smart-grid-validator-web
+          path: build/web
+      - uses: actions/upload-artifact@v4
+        with:
+          name: smart-grid-validator-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.38.3"
+          channel: stable
+          cache: true
+      - name: Preparar proyecto Windows
+        run: flutter create . --project-name smart_grid_validator --org mx.edu.upchiapas --platforms windows
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter build windows --release --dart-define=API_BASE_URL=https://example.invalid/api/v1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: smart-grid-validator-windows
+          path: build/windows/x64/runner/Release
