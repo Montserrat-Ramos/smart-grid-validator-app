@@ -58,21 +58,21 @@ El script genera las carpetas Android y Windows, conserva la carpeta Web incluid
 ```powershell
 flutter pub get
 flutter run -d chrome --web-port=8080 `
-  --dart-define=API_BASE_URL=http://localhost:8000/api/v1
+  --dart-define=API_BASE_URL=https://smart-grid-validator-api.onrender.com/api/v1
 ```
 
 ## Ejecutar Windows
 
 ```powershell
 flutter run -d windows `
-  --dart-define=API_BASE_URL=http://localhost:8000/api/v1
+  --dart-define=API_BASE_URL=https://smart-grid-validator-api.onrender.com/api/v1
 ```
 
 ## Ejecutar Android Emulator
 
 ```powershell
 flutter run -d emulator-5554 `
-  --dart-define=API_BASE_URL=http://10.0.2.2:8000/api/v1
+  --dart-define=API_BASE_URL=https://smart-grid-validator-api.onrender.com/api/v1
 ```
 
 ## Ejecutar en teléfono físico
@@ -81,7 +81,7 @@ La API debe iniciar con `--host 0.0.0.0`. Sustituye la IP por la de tu computado
 
 ```powershell
 flutter run -d ID_DEL_DISPOSITIVO `
-  --dart-define=API_BASE_URL=http://XXX.XXX.X.XX:8000/api/v1
+  --dart-define=API_BASE_URL=https://smart-grid-validator-api.onrender.com/api/v1
 ```
 
 ## Credenciales locales
@@ -95,13 +95,13 @@ Contraseña: Admin123*
 
 ```powershell
 flutter build web --release `
-  --dart-define=API_BASE_URL=https://TU-API/api/v1
+  --dart-define=API_BASE_URL=https://smart-grid-validator-api.onrender.com/api/v1
 
 flutter build apk --release `
-  --dart-define=API_BASE_URL=https://TU-API/api/v1
+  --dart-define=API_BASE_URL=https://smart-grid-validator-api.onrender.com/api/v1
 
 flutter build windows --release `
-  --dart-define=API_BASE_URL=https://TU-API/api/v1
+  --dart-define=API_BASE_URL=https://smart-grid-validator-api.onrender.com/api/v1
 ```
 
 ## Verificación automática

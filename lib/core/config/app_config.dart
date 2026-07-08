@@ -11,8 +11,10 @@ class AppConfig {
   static String get apiBaseUrl {
     if (_configuredApiBaseUrl.isNotEmpty) return _configuredApiBaseUrl;
     if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
-      return 'http://192.168.1.14:8000/api/v1';
+      //return 'http://192.168.1.14:8000/api/v1';
+      return 'https://smart-grid-validator-api.onrender.com/api/v1';
     }
-    return 'http://localhost:8000/api/v1';
+    //return 'http://localhost:8000/api/v1';
+    return 'https://smart-grid-validator-api.onrender.com/api/v1';
   }
 }
